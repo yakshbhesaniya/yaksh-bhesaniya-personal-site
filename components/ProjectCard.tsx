@@ -8,7 +8,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <div className="bg-surface border border-border rounded-lg p-6 hover:border-accent/50 transition-all duration-300 h-full flex flex-col">
+        <div className="bg-surface border border-border rounded-lg p-5 sm:p-6 hover:border-accent/50 transition-all duration-300 h-full flex flex-col">
             <div className="flex-1">
                 {/* Title and Period */}
                 <div className="mb-4">

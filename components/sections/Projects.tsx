@@ -11,7 +11,7 @@ export function Projects() {
             title="Engineering Projects"
             subtitle="Practical solutions to real-world engineering challenges"
         >
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                 {projectsData.map((project) => (
                     <ProjectCard key={project.title} project={project} />
                 ))}

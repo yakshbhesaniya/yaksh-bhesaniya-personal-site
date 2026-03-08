@@ -7,7 +7,7 @@ export function About() {
             title="Engineering Journey"
             subtitle="From foundational IT education to production-grade backend systems"
         >
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
                 <div className="space-y-6 text-text-primary">
                     <div>
                         <h3 className="text-xl font-semibold mb-3 text-accent">The Path</h3>

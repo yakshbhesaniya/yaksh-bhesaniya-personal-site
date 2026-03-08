@@ -18,7 +18,7 @@ export function TechnicalExpertise() {
             title="Technical Expertise"
             subtitle="Production-ready skills organized by domain, not proficiency meters"
         >
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {categories.map((category) => (
                     <div
                         key={category.title}

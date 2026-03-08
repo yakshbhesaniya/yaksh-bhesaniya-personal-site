@@ -24,11 +24,11 @@ export function Resume() {
                             key={idx}
                             className="bg-surface border border-border rounded-lg p-6"
                         >
-                            <div className="flex items-start justify-between mb-2">
+                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
                                 <h4 className="text-xl font-semibold text-success">{achievement.role}</h4>
-                                <span className="text-sm text-text-secondary font-mono">{achievement.period}</span>
+                                <span className="text-sm text-text-secondary font-mono bg-background px-3 py-1 rounded-full border border-border w-fit">{achievement.period}</span>
                             </div>
-                            <p className="text-text-secondary mb-2">{achievement.company}</p>
+                            <p className="text-text-primary font-medium mb-3">{achievement.company}</p>
                             <ul className="space-y-2">
                                 {achievement.description.map((desc, i) => (
                                     <li key={i} className="text-text-secondary flex items-start gap-2">
@@ -49,14 +49,15 @@ export function Resume() {
                     {work.map((exp, idx) => (
                         <div
                             key={idx}
-                            className="border-l-2 border-border pl-6 pb-6 last:pb-0"
+                            className="border-l-2 border-border pl-6 pb-8 last:pb-0 relative"
                         >
-                            <div className="flex items-start justify-between mb-2">
+                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-border border-4 border-background" />
+                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
                                 <div>
                                     <h4 className="text-lg font-semibold text-text-primary">{exp.role}</h4>
-                                    <p className="text-text-secondary">{exp.company}</p>
+                                    <p className="text-text-secondary font-medium">{exp.company}</p>
                                 </div>
-                                <span className="text-sm text-text-secondary font-mono">{exp.period}</span>
+                                <span className="text-sm text-text-secondary font-mono bg-surface px-3 py-1 rounded-full border border-border w-fit">{exp.period}</span>
                             </div>
                             <ul className="space-y-1 mb-3">
                                 {exp.description.map((desc, i) => (
@@ -90,12 +91,12 @@ export function Resume() {
                     {education.map((edu, idx) => (
                         <div
                             key={idx}
-                            className="flex items-start justify-between p-4 bg-surface border border-border rounded-lg"
+                            className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 p-5 bg-surface border border-border rounded-lg"
                         >
-                            <div>
+                            <div className="flex-1">
                                 <h4 className="text-lg font-semibold text-text-primary">{edu.role}</h4>
-                                <p className="text-text-secondary">{edu.company}</p>
-                                <ul className="mt-2 space-y-1">
+                                <p className="text-accent font-medium mb-3">{edu.company}</p>
+                                <ul className="space-y-2">
                                     {edu.description.map((desc, i) => (
                                         <li key={i} className="text-text-secondary flex items-start gap-2 text-sm">
                                             <ChevronRight className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
@@ -104,7 +105,7 @@ export function Resume() {
                                     ))}
                                 </ul>
                             </div>
-                            <span className="text-sm text-text-secondary font-mono">{edu.period}</span>
+                            <span className="text-sm text-text-secondary font-mono bg-background px-3 py-1 rounded-full border border-border w-fit">{edu.period}</span>
                         </div>
                     ))}
                 </div>

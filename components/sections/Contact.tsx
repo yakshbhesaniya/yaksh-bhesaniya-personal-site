@@ -3,6 +3,7 @@
 import { Section } from "@/components/ui/Section";
 import { siteConfig } from "@/config/site";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function Contact() {
     const [copied, setCopied] = useState(false);
@@ -77,14 +78,17 @@ export function Contact() {
                 </div>
 
                 {/* Social Links */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {socials.map((social) => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
+                    {socials.map((social, idx) => (
                         <a
                             key={social.name}
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex flex-col items-center gap-3 p-6 bg-surface border border-border rounded-lg hover:border-accent transition-all group"
+                            className={cn(
+                                "flex flex-col items-center gap-3 p-4 md:p-6 bg-surface border border-border rounded-lg hover:border-accent transition-all group",
+                                idx === socials.length - 1 && socials.length % 2 !== 0 ? "col-span-2 sm:col-span-1" : ""
+                            )}
                         >
                             <div className="text-text-secondary group-hover:text-accent transition-colors">
                                 {social.icon}
