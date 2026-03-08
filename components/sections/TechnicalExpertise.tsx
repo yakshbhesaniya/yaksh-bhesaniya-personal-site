@@ -25,8 +25,8 @@ export function TechnicalExpertise() {
                         className="bg-surface border border-border rounded-lg p-6 hover:border-accent/50 transition-colors"
                     >
                         <div className="flex items-center gap-3 mb-4">
-                            <span>{category.icon}</span>
-                            <h3 className="text-xl font-semibold text-text-primary">{category.title}</h3>
+                            <span className="flex-shrink-0">{category.icon}</span>
+                            <h3 className="text-lg sm:text-xl font-semibold text-text-primary">{category.title}</h3>
                         </div>
 
                         <ul className="space-y-2">

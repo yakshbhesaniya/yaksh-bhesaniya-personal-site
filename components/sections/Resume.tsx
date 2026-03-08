@@ -25,7 +25,7 @@ export function Resume() {
                             className="bg-surface border border-border rounded-lg p-6"
                         >
                             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
-                                <h4 className="text-xl font-semibold text-success">{achievement.role}</h4>
+                                <h4 className="text-lg sm:text-xl font-semibold text-success">{achievement.role}</h4>
                                 <span className="text-sm text-text-secondary font-mono bg-background px-3 py-1 rounded-full border border-border w-fit">{achievement.period}</span>
                             </div>
                             <p className="text-text-primary font-medium mb-3">{achievement.company}</p>
@@ -112,9 +112,9 @@ export function Resume() {
             </div>
 
             {/* Download Resume */}
-            <div className="text-center">
-                <Link href="/resume/Yaksh_Bhesaniya_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg">
+            <div className="flex justify-center mt-12 px-4 sm:px-0">
+                <Link href="/resume/Yaksh_Bhesaniya_Resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>

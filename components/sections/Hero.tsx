@@ -25,7 +25,7 @@ export function Hero() {
                     {/* Name and Title */}
                     <div className="space-y-4 md:space-y-6">
                         <div>
-                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary tracking-tight">
+                            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary tracking-tight">
                                 {siteConfig.author.name}
                             </h1>
                         </div>

@@ -53,23 +53,23 @@ export function Contact() {
         >
             <div className="max-w-3xl mx-auto">
                 {/* Email */}
-                <div className="mb-12 text-center">
+                <div className="mb-12 flex justify-center px-4">
                     <button
                         onClick={copyEmail}
-                        className="group inline-flex items-center gap-3 px-6 py-4 bg-surface border border-border rounded-lg hover:border-accent transition-all"
+                        className="group flex items-center gap-3 px-4 py-4 bg-surface border border-border rounded-lg hover:border-accent transition-all w-full max-w-lg"
                     >
-                        <svg className="w-6 h-6 text-text-secondary group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 flex-shrink-0 text-text-secondary group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        <div className="text-left">
-                            <p className="text-sm text-text-secondary">Email</p>
-                            <p className="text-lg font-mono text-accent">{siteConfig.social.email}</p>
+                        <div className="text-left overflow-hidden">
+                            <p className="text-xs text-text-secondary">Email</p>
+                            <p className="text-sm sm:text-lg font-mono text-accent truncate">{siteConfig.social.email}</p>
                         </div>
-                        <div className="ml-4">
+                        <div className="ml-auto">
                             {copied ? (
-                                <span className="text-success text-sm">Copied!</span>
+                                <span className="text-success text-xs font-medium">Copied!</span>
                             ) : (
-                                <svg className="w-5 h-5 text-text-secondary group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 flex-shrink-0 text-text-secondary group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
                             )}
@@ -78,17 +78,14 @@ export function Contact() {
                 </div>
 
                 {/* Social Links */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-                    {socials.map((social, idx) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 px-4">
+                    {socials.map((social) => (
                         <a
                             key={social.name}
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={cn(
-                                "flex flex-col items-center gap-3 p-4 md:p-6 bg-surface border border-border rounded-lg hover:border-accent transition-all group",
-                                idx === socials.length - 1 && socials.length % 2 !== 0 ? "col-span-2 sm:col-span-1" : ""
-                            )}
+                            className="flex flex-col items-center gap-3 p-6 bg-surface border border-border rounded-lg hover:border-accent transition-all group"
                         >
                             <div className="text-text-secondary group-hover:text-accent transition-colors">
                                 {social.icon}

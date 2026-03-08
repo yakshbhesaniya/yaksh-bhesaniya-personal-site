@@ -63,15 +63,15 @@ export async function Blog() {
                     </div>
 
                     {/* Link to Medium */}
-                    <div className="mt-12 text-center">
+                    <div className="mt-12 flex justify-center px-4 sm:px-0">
                         <Link
                             href="https://yakshbhesaniya.medium.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-surface border border-border rounded-lg text-text-primary hover:border-accent transition-colors"
+                            className="inline-flex items-center justify-center gap-2 px-6 min-h-[3rem] py-3 bg-surface border border-border rounded-lg text-text-primary hover:border-accent transition-colors w-full sm:w-auto text-sm md:text-base font-medium"
                         >
                             View All Articles on Medium
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                         </Link>

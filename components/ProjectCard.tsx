@@ -12,7 +12,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <div className="flex-1">
                 {/* Title and Period */}
                 <div className="mb-4">
-                    <h3 className="text-xl font-semibold text-text-primary mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-text-primary mb-2">
                         {project.title}
                     </h3>
                     <p className="text-sm text-text-secondary font-mono">{project.period}</p>

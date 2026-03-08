@@ -17,9 +17,9 @@ export function Projects() {
                 ))}
             </div>
 
-            <div className="flex justify-center mt-12">
-                <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="lg" className="group">
+            <div className="flex justify-center mt-12 px-4 sm:px-0">
+                <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                    <Button variant="outline" size="lg" className="group w-full sm:w-auto">
                         View more projects on GitHub
                         <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
                     </Button>
