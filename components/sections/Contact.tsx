@@ -97,7 +97,7 @@ export function Contact() {
                 {/* Footer Note */}
                 <div className="mt-12 text-center">
                     <p className="text-text-secondary text-sm">
-                        Let's connect - I'm open to full-time engineering roles and always happy to discuss Node.js, Python and microservices architecture.
+                        Let&apos;s connect - I&apos;m open to full-time engineering roles and always happy to discuss Node.js, Python and microservices architecture.
                     </p>
                 </div>
             </div>
