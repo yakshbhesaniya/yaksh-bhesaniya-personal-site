@@ -56,6 +56,11 @@
   .link-styled {
     @apply text-accent hover:underline transition-colors;
   }
+
+  /* Glassmorphism effect */
+  .glassmorphism {
+    @apply bg-surface/40 backdrop-blur-md border border-white/10;
+  }
 }
 
 @layer utilities {
