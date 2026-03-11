@@ -18,9 +18,32 @@ export function Navigation() {
         { href: "#contact", label: "Connect" },
     ];
 
+    const [isAtTop, setIsAtTop] = useState(true);
+
     // Close menu when clicking a link
     const handleToggle = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
+
+    // Handle scroll to toggle logo text
+    useEffect(() => {
+        const handleScroll = () => {
+            const aboutSection = document.getElementById("about");
+            if (aboutSection) {
+                const rect = aboutSection.getBoundingClientRect();
+                // Expand the logo (isAtTop = false) only when the About section is almost at the top
+                // We show initials (isAtTop = true) when the About section is still below 100px from top
+                setIsAtTop(rect.top > 100);
+            } else {
+                // Fallback if section not found (Hero is approx 100vh)
+                setIsAtTop(window.scrollY < window.innerHeight * 0.9);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        // Initial check - use a small timeout to ensure DOM is ready
+        setTimeout(handleScroll, 100);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // Prevent scroll when menu is open
     useEffect(() => {
@@ -31,13 +54,31 @@ export function Navigation() {
         }
     }, [isOpen]);
 
+    const initials = siteConfig.author.name.split(" ").map(word => word[0]).join("");
+    const fullName = siteConfig.author.name;
+
     return (
         <>
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border transition-all duration-300">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="flex items-center justify-between h-16">
-                        <Link href="/" className="font-mono text-success font-bold text-lg z-50" onClick={closeMenu}>
-                            {siteConfig.author.name.split(" ").map(word => word[0]).join("")}
+                        <Link href="/" className="font-mono text-success font-bold text-lg z-50 flex items-center group" onClick={closeMenu}>
+                            <span className="flex items-center">
+                                <span>Y</span>
+                                <span className={cn(
+                                    "transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap",
+                                    isAtTop ? "max-w-0 opacity-0" : "max-w-[200px] opacity-100 mr-2"
+                                )}>
+                                    aksh
+                                </span>
+                                <span className="ml-[1px]">B</span>
+                                <span className={cn(
+                                    "transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap",
+                                    isAtTop ? "max-w-0 opacity-0" : "max-w-[200px] opacity-100 ml-0.5"
+                                )}>
+                                    hesaniya
+                                </span>
+                            </span>
                         </Link>
 
                         {/* Desktop Navigation */}
