@@ -142,7 +142,7 @@ export function Navigation() {
 
                 {/* Footer info in mobile menu */}
                 <div className="mt-auto pb-12 text-center px-4">
-                    <p className="text-text-secondary text-sm font-mono mb-4">yakshbhesaniya@gmail.com</p>
+                    <p className="text-text-secondary text-sm font-mono mb-4">yakshb.iitb@gmail.com</p>
                     <div className="flex gap-8 justify-center">
                         <Link href={siteConfig.social.github} className="text-text-secondary hover:text-success text-sm font-mono" target="_blank">GITHUB</Link>
                         <Link href={siteConfig.social.linkedin} className="text-text-secondary hover:text-success text-sm font-mono" target="_blank">LINKEDIN</Link>
