@@ -1,15 +1,15 @@
 export const siteConfig = {
     name: "Yaksh Bhesaniya",
-    title: "Backend Engineer | Node.js | Python | Distributed Systems",
-    description: "I design and build scalable backend systems that survive real traffic, real failures and real production environments.",
+    title: "Backend Engineer | Agentic AI | Distributed Systems",
+    description: "I build scalable backend systems and autonomous AI agents for high-traffic production environments.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://yakshbhesaniya.com",
 
     author: {
         name: "Yaksh Bhesaniya",
         email: "yakshb.iitb@gmail.com",
         role: "Backend Engineer",
-        tagline: "Backend Engineer | Node.js | Python | Distributed Systems",
-        bio: "GTU Gold Medalist specializing in scalable backend systems, microservices architecture and production-grade engineering.",
+        tagline: "Backend | Agentic AI | Distributed Systems",
+        bio: "GTU Gold Medalist specializing in scalable backend systems, autonomous AI agents, and production-grade engineering.",
     },
 
     social: {
@@ -20,6 +20,9 @@ export const siteConfig = {
     },
 
     keywords: [
+        "Agentic AI Engineer",
+        "AI Agent Developer",
+        "Multi-Agent AI Systems",
         "Backend Developer India",
         "Node.js Backend Engineer",
         "Scalable Systems Developer",

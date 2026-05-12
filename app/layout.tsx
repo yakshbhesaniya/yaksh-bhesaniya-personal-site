@@ -97,6 +97,9 @@ export default function RootLayout({
                             ],
                             award: "GTU Gold Medalist 2021",
                             knowsAbout: [
+                                "Agentic AI",
+                                "AI Agents",
+                                "Multi-Agent Systems",
                                 "Backend Development",
                                 "Node.js",
                                 "TypeScript",

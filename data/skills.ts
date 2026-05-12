@@ -23,6 +23,17 @@ export const skillsData = {
         "Async Processing",        
     ],
 
+    aiAgents: [
+        "Agentic AI Frameworks",
+        "Multi-Agent Orchestration",
+        "LLM Integration & Prompting",
+        "RAG (Retrieval-Augmented Generation)",
+        "Vector Databases (Pinecone, Weaviate)",
+        "Autonomous Workflow Design",
+        "AI Observability & Tracing",
+        "Tools & Function Calling",
+    ],
+
     systems: [
         "System Design",
         "Clean Architecture",

@@ -1,10 +1,11 @@
 import { Section } from "@/components/ui/Section";
 import { skillsData } from "@/data/skills";
-import { Code2, Server, Network, Database, Wrench, GitBranch, ChevronRight } from "lucide-react";
+import { Code2, Server, Network, Database, Wrench, GitBranch, ChevronRight, Bot } from "lucide-react";
 
 export function TechnicalExpertise() {
     const categories = [
         { title: "Languages", items: skillsData.languages, icon: <Code2 className="w-6 h-6 text-accent" /> },
+        { title: "Agentic AI", items: skillsData.aiAgents, icon: <Bot className="w-6 h-6 text-accent" /> },
         { title: "Backend Engineering", items: skillsData.backend, icon: <Server className="w-6 h-6 text-accent" /> },
         { title: "Systems & Architecture", items: skillsData.systems, icon: <Network className="w-6 h-6 text-accent" /> },
         { title: "Databases", items: skillsData.databases, icon: <Database className="w-6 h-6 text-accent" /> },
