@@ -44,6 +44,23 @@ export function Hero() {
                             </p>
                         </div>
 
+                        {/* Credential strip */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+                            {siteConfig.credentials.map((credential) => (
+                                <div
+                                    key={credential.label}
+                                    className="bg-surface/60 border border-border rounded-lg px-3 py-2.5 backdrop-blur-sm"
+                                >
+                                    <p className="font-mono text-success text-sm sm:text-base font-semibold leading-tight">
+                                        {credential.value}
+                                    </p>
+                                    <p className="text-text-secondary text-xs mt-1 leading-snug">
+                                        {credential.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                             <Button
@@ -75,7 +92,7 @@ export function Hero() {
                     {/* Image Column */}
                     <div className="flex-shrink-0 relative group">
                         <div className="absolute -inset-1 bg-gradient-to-r from-success/50 to-accent/50 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                        <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border border-white/10 glassmorphism shadow-2xl skew-y-0 group-hover:-skew-y-2 transition-transform duration-500">
+                        <div className="relative w-64 h-80 md:w-80 md:h-[26rem] lg:w-96 lg:h-[34rem] rounded-2xl overflow-hidden border border-white/10 glassmorphism shadow-2xl skew-y-0 group-hover:-skew-y-2 transition-transform duration-500">
                             <Image
                                 src="/Yaksh.jpeg"
                                 alt={siteConfig.author.name}

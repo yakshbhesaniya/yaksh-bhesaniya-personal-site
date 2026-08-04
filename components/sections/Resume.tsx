@@ -15,33 +15,6 @@ export function Resume() {
             title="Experience & Achievements"
             subtitle="Production work, academic excellence and technical leadership"
         >
-            {/* Achievements Highlight */}
-            <div className="mb-12">
-                <h3 className="text-2xl font-semibold text-accent mb-6">Notable Achievements</h3>
-                <div className="space-y-4">
-                    {achievements.map((achievement, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-surface border border-border rounded-lg p-6"
-                        >
-                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
-                                <h4 className="text-lg sm:text-xl font-semibold text-success">{achievement.role}</h4>
-                                <span className="text-sm text-text-secondary font-mono bg-background px-3 py-1 rounded-full border border-border w-fit">{achievement.period}</span>
-                            </div>
-                            <p className="text-text-primary font-medium mb-3">{achievement.company}</p>
-                            <ul className="space-y-2">
-                                {achievement.description.map((desc, i) => (
-                                    <li key={i} className="text-text-secondary flex items-start gap-2">
-                                        <ChevronRight className="w-4 h-4 text-success mt-1 flex-shrink-0" />
-                                        <span>{desc}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
             {/* Work Experience */}
             <div className="mb-12">
                 <h3 className="text-2xl font-semibold text-accent mb-6">Work Experience</h3>
@@ -79,6 +52,33 @@ export function Resume() {
                                     ))}
                                 </div>
                             )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Achievements Highlight */}
+            <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-accent mb-6">Notable Achievements</h3>
+                <div className="space-y-4">
+                    {achievements.map((achievement, idx) => (
+                        <div
+                            key={idx}
+                            className="bg-surface border border-border rounded-lg p-6"
+                        >
+                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                                <h4 className="text-lg sm:text-xl font-semibold text-success">{achievement.role}</h4>
+                                <span className="text-sm text-text-secondary font-mono bg-background px-3 py-1 rounded-full border border-border w-fit">{achievement.period}</span>
+                            </div>
+                            <p className="text-text-primary font-medium mb-3">{achievement.company}</p>
+                            <ul className="space-y-2">
+                                {achievement.description.map((desc, i) => (
+                                    <li key={i} className="text-text-secondary flex items-start gap-2">
+                                        <ChevronRight className="w-4 h-4 text-success mt-1 flex-shrink-0" />
+                                        <span>{desc}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     ))}
                 </div>

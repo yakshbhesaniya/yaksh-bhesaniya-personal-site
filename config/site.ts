@@ -1,7 +1,7 @@
 export const siteConfig = {
     name: "Yaksh Bhesaniya",
     title: "Backend Engineer | Agentic AI | Distributed Systems",
-    description: "I build scalable backend systems and autonomous AI agents for high-traffic production environments.",
+    description: "I build production LLM agent systems and the backends they run on - currently shipping one for a paying client, alongside satellite data pipelines at IIT Bombay.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://yakshbhesaniya.com",
 
     author: {
@@ -11,6 +11,13 @@ export const siteConfig = {
         tagline: "Backend | Agentic AI | Distributed Systems",
         bio: "GTU Gold Medalist specializing in scalable backend systems, autonomous AI agents, and production-grade engineering.",
     },
+
+    /** Credential strip shown above the fold - the proof, not the promise. */
+    credentials: [
+        { value: "M.Tech", label: "IIT Bombay, CSRE" },
+        { value: "ISRO", label: "Space Applications Centre" },
+        { value: "Gold Medalist", label: "Diploma in IT, GTU - 10.00 CGPA" },
+    ],
 
     social: {
         linkedin: "https://www.linkedin.com/in/yaksh-bhesaniya/",
@@ -31,6 +38,13 @@ export const siteConfig = {
         "GTU Gold Medalist Developer",
         "TypeScript Backend Developer",
         "Distributed Systems Engineer",
+        "LLM Agent Engineer",
+        "FastAPI Python Developer",
+        "MCP Server Developer",
+        "Remote Sensing Engineer",
+        "Satellite Image Processing",
+        "IIT Bombay M.Tech CSRE",
+        "ISRO SAC Intern",
     ],
 
     // Featured Medium blog playlists

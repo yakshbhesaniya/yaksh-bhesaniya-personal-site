@@ -59,6 +59,50 @@ export const experienceData: Experience[] = [
         ],
     },
     {
+        role: "Research Intern",
+        company: "Space Applications Centre (SAC), ISRO - SRTD, Ahmedabad",
+        period: "May'26 - Jul'26",
+        type: "work",
+        description: [
+            "Worked on enhancing a satellite image mosaicking pipeline for geometric correction of high-resolution imagery",
+            "Explored deep-learning-based image matching alongside classical feature-matching approaches, and built supporting tooling for an air-gapped environment",
+            "Project details and results are confidential; overview only",
+        ],
+        skills: [
+            "Python",
+            "PyTorch",
+            "OpenCV",
+            "GDAL/rasterio",
+            "FastAPI",
+            "React",
+            "Photogrammetry",
+            "Air-gapped Deployment",
+        ],
+    },
+    {
+        role: "AI Engineer (Freelance)",
+        company: "Dhi Labs AI - Ledgerline",
+        period: "Apr'26 - Present",
+        type: "work",
+        description: [
+            "Building Ledgerline, a multi-tenant SaaS platform where analysts upload lengthy credit agreements and an LLM agent answers questions about them with citations linking back to the exact page in the source document",
+            "Work spans the AI pipeline - agent design, document understanding, model routing and answer-quality evaluation - and the production backend it runs on",
+            "Paid client engagement; implementation details are under NDA",
+        ],
+        skills: [
+            "FastAPI",
+            "SQLAlchemy",
+            "PostgreSQL",
+            "Redis",
+            "S3",
+            "Next.js",
+            "React",
+            "TypeScript",
+            "LLM Agents",
+            "Docker",
+        ],
+    },
+    {
         role: "Teaching Assistant",
         company: "IIT Bombay",
         period: "Jul'25 - Present",
@@ -83,7 +127,7 @@ export const experienceData: Experience[] = [
     {
         role: "Freelance Software Developer",
         company: "Self-Employed",
-        period: "Jan'24 - Jun'25",
+        period: "Jun'24 - Jun'25",
         type: "work",
         description: [
             "Built end-to-end backend development projects using Node.js and REST APIs",
@@ -95,12 +139,22 @@ export const experienceData: Experience[] = [
     {
         role: "Software Engineer Intern",
         company: "Rapidops Inc.",
-        period: "Jun'24 - May'24",
+        period: "Jan'24 - May'24",
         type: "work",
         description: [
             "Developed and optimized backend APIs and database queries for production-scale applications",
         ],
         skills: ["Backend Development", "API Design", "Database Optimization"],
+    },
+    {
+        role: "Software Engineer Intern",
+        company: "HumBee Studio",
+        period: "Feb'23 - May'23",
+        type: "work",
+        description: [
+            "Contributed to backend feature development and bug fixes across production web applications",
+        ],
+        skills: ["Backend Development", "Web Development", "Debugging"],
     },
     {
         role: "Lead Organizer",

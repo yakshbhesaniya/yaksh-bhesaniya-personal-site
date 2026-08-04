@@ -1,6 +1,6 @@
 import { Section } from "@/components/ui/Section";
 import { skillsData } from "@/data/skills";
-import { Code2, Server, Network, Database, Wrench, GitBranch, ChevronRight, Bot } from "lucide-react";
+import { Code2, Server, Network, Database, Wrench, GitBranch, ChevronRight, Bot, Satellite } from "lucide-react";
 
 export function TechnicalExpertise() {
     const categories = [
@@ -8,6 +8,7 @@ export function TechnicalExpertise() {
         { title: "Agentic AI", items: skillsData.aiAgents, icon: <Bot className="w-6 h-6 text-accent" /> },
         { title: "Backend Engineering", items: skillsData.backend, icon: <Server className="w-6 h-6 text-accent" /> },
         { title: "Systems & Architecture", items: skillsData.systems, icon: <Network className="w-6 h-6 text-accent" /> },
+        { title: "Geospatial & Remote Sensing", items: skillsData.geospatial, icon: <Satellite className="w-6 h-6 text-accent" /> },
         { title: "Databases", items: skillsData.databases, icon: <Database className="w-6 h-6 text-accent" /> },
         { title: "Tools & Frameworks", items: skillsData.tools, icon: <Wrench className="w-6 h-6 text-accent" /> },
         { title: "Development", items: skillsData.development, icon: <GitBranch className="w-6 h-6 text-accent" /> },

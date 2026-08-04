@@ -12,9 +12,11 @@ export function About() {
                 <div className="max-w-6xl">
                     <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">The Path</h3>
                     <p className="text-text-secondary leading-relaxed text-lg">
-                        My journey began with a Diploma in IT, leading to a BE in IT where I developed a strong foundation in computer science. 
-                        After securing a good rank in GATE (CS), I am currently pursuing postgraduate studies at IIT Bombay, 
-                        focusing on deepening my understanding of distributed systems while continuing to build practical applications.
+                        My journey began with a Diploma in IT, leading to a BE in IT where I developed a strong foundation in computer science.
+                        After securing a good rank in GATE (CS), I am currently pursuing postgraduate studies at IIT Bombay.
+                        Along the way I have interned at Space Applications Centre (ISRO), working on satellite image processing,
+                        and I currently work as a freelance AI Engineer at Dhi Labs AI building a production LLM agent platform -
+                        while my M.Tech thesis takes on surface water monitoring from satellite data.
                     </p>
                 </div>
 
@@ -23,38 +25,42 @@ export function About() {
                         <div>
                             <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">Backend Specialization</h3>
                             <p className="text-text-secondary leading-relaxed">
-                                Focused on Node.js and Python for building scalable backend architectures.
-                                Experience ranges from real-time inventory systems to logistics optimization
-                                platforms and emergency response analytics.
+                                I build scalable backend architectures in Python and Node.js. That work has shipped as a
+                                retail inventory and accounting system running in production for a real client, a
+                                multi-tenant SaaS platform for a paying customer, and logistics and emergency-response
+                                platforms built on GIS routing.
                             </p>
                         </div>
 
                         <div>
                             <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">Production Focus</h3>
                             <p className="text-text-secondary leading-relaxed">
-                                I enjoy building systems that are robust and reliable. I strive to design architectures that 
-                                can handle real-world challenges, such as unexpected traffic or system failures. I am always 
-                                learning more about caching, async processing, database optimization and ways to improve API performance.
+                                I design for failure, because production systems fail in ways demos never do. Retries,
+                                timeouts, idempotency, caching, async processing and database optimization are the parts
+                                I reach for first - and I treat a timeout as a design decision with a reason behind it,
+                                not a magic number someone will tidy away later.
                             </p>
                         </div>
                     </div>
 
                     <div className="space-y-8 text-text-primary">
                         <div>
-                            <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">Systems Thinking</h3>
+                            <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">Measurement Over Assumption</h3>
                             <p className="text-text-secondary leading-relaxed">
-                                I approach problems by 
-                                trying to understand the entire lifecycle of an application, from the initial API design 
-                                down to deployment and monitoring, always looking for ways to improve overall observability.
+                                I own the whole lifecycle, from API design through deployment and monitoring, and I verify
+                                rather than assume. On my thesis that means mutation-testing the test suite itself and
+                                publishing the predictions of mine that turned out to be wrong; on client work it means an
+                                evaluation harness that has to pass before a change ships.
                             </p>
                         </div>
 
                         <div>
                             <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">Agentic AI & Multi-Agent Systems</h3>
                             <p className="text-text-secondary leading-relaxed">
-                                I am currently exploring the frontier of Agentic AI, building autonomous agents 
-                                and multi-agent systems that can reason, plan and execute complex workflows. 
-                                I focus on making these systems reliable, observable and production-ready.
+                                I build autonomous agents and multi-agent systems that reason, plan and execute complex workflows,
+                                including production LLM agents that answer questions over long documents with verifiable citations.
+                                My focus is the unglamorous half: cost control, evaluation, isolation and tracing, so these systems
+                                are reliable and observable rather than merely impressive in a demo.
                             </p>
                         </div>
                     </div>
