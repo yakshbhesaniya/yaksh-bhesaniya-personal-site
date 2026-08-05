@@ -14,7 +14,7 @@ export const siteConfig = {
 
     /** Credential strip shown above the fold - the proof, not the promise. */
     credentials: [
-        { value: "M.Tech", label: "IIT Bombay, CSRE" },
+        { value: "M.Tech", label: "IIT Bombay" },
         { value: "ISRO", label: "Space Applications Centre" },
         { value: "Gold Medalist", label: "Diploma in IT, GTU - 10.00 CGPA" },
     ],
@@ -43,7 +43,7 @@ export const siteConfig = {
         "MCP Server Developer",
         "Remote Sensing Engineer",
         "Satellite Image Processing",
-        "IIT Bombay M.Tech CSRE",
+        "IIT Bombay M.Tech",
         "ISRO SAC Intern",
     ],
 
