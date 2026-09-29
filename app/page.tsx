@@ -1,20 +1,26 @@
 import { Hero } from "@/components/sections/Hero";
+import { Highlights } from "@/components/sections/Highlights";
 import { About } from "@/components/sections/About";
-import { TechnicalExpertise } from "@/components/sections/TechnicalExpertise";
+import { Experience } from "@/components/sections/Experience";
+import { Thesis } from "@/components/sections/Thesis";
 import { Projects } from "@/components/sections/Projects";
+import { TechnicalExpertise } from "@/components/sections/TechnicalExpertise";
+import { Recognition } from "@/components/sections/Recognition";
 import { Blog } from "@/components/sections/Blog";
-import { Resume } from "@/components/sections/Resume";
 import { Contact } from "@/components/sections/Contact";
 
 export default function HomePage() {
     return (
         <>
             <Hero />
+            <Highlights />
             <About />
-            <TechnicalExpertise />
+            <Experience />
+            <Thesis />
             <Projects />
+            <TechnicalExpertise />
+            <Recognition />
             <Blog />
-            <Resume />
             <Contact />
         </>
     );

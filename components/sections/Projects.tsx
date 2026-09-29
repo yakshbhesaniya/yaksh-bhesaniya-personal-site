@@ -1,30 +1,36 @@
 import { Section } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projectsData } from "@/data/projects";
-import { Button } from "@/components/ui/Button";
+import { buttonClasses } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
+import { Github } from "lucide-react";
 
 export function Projects() {
+    // The thesis has its own section, and client/internship work is covered under Experience.
+    const projects = projectsData.filter((project) => !/Thesis|Client Work|Internship/.test(project.category));
+
     return (
         <Section
             id="projects"
-            title="Engineering Projects"
-            subtitle="Practical solutions to real-world engineering challenges"
+            eyebrow="Projects"
+            title="Selected work"
+            subtitle="Client builds, course projects and self-driven work - each with the problem, what I built and what it measurably changed."
         >
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                {projectsData.map((project) => (
-                    <ProjectCard key={project.title} project={project} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+                {projects.map((project, idx) => (
+                    <Reveal key={project.title} delay={(idx % 2) * 80} className="h-full min-w-0">
+                        <ProjectCard project={project} />
+                    </Reveal>
                 ))}
             </div>
 
-            <div className="flex justify-center mt-12 px-4 sm:px-0">
-                <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                    <Button variant="outline" size="lg" className="group w-full sm:w-auto">
-                        View more projects on GitHub
-                        <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
-                    </Button>
+            <Reveal className="flex justify-center mt-12">
+                <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" className={buttonClasses("outline", "lg")}>
+                    <Github className="w-4 h-4" />
+                    More on GitHub
                 </a>
-            </div>
+            </Reveal>
         </Section>
     );
 }

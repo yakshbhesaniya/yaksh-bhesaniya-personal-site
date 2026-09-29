@@ -1,112 +1,101 @@
-"use client";
-
-import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
+import { buttonClasses } from "@/components/ui/Button";
+import { RoleRotator } from "@/components/ui/RoleRotator";
+import { HeroSceneLoader } from "@/components/three/HeroSceneLoader";
+import { ArrowRight, Download, ArrowDown } from "lucide-react";
+
+const roles = ["LLM agents", "multi-agent systems", "RAG pipelines", "scalable backends", "satellite pipelines"];
 
 export function Hero() {
-    const scrollToSection = (id: string) => {
-        const element = document.getElementById(id);
-        element?.scrollIntoView({ behavior: "smooth" });
-    };
-
     return (
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden py-20">
-            {/* Grid background */}
-            <div className="absolute inset-0 grid-background opacity-50" />
+        <section className="relative min-h-[100svh] flex flex-col overflow-hidden pt-28">
+            <div className="absolute inset-0 grid-background" aria-hidden="true" />
 
-            {/* Content */}
-            <div className="container mx-auto px-4 max-w-6xl relative z-10 pt-16">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                    {/* Text Content */}
-                    <div className="flex-1 space-y-8 md:space-y-12 text-left">
-                        {/* Terminal-style greeting */}
-                        <div className="font-mono text-success text-sm md:text-lg">
-                            <span className="opacity-70">$ whoami</span>
-                        </div>
+            {/* 3D globe: beside the text on desktop, a dimmed backdrop on mobile.
+                Capped width keeps it next to the text on very wide screens. */}
+            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-[92rem]" aria-hidden="true">
+                <div className="absolute inset-0 lg:left-[47%] 2xl:-right-[12rem] opacity-35 lg:opacity-100 pointer-events-none lg:pointer-events-auto">
+                    <HeroSceneLoader />
+                </div>
+            </div>
 
-                        {/* Name and Title */}
-                        <div className="space-y-4 md:space-y-6">
-                            <div>
-                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight">
-                                    {siteConfig.author.name}
-                                </h1>
-                            </div>
-                            <p className="text-lg sm:text-xl md:text-2xl text-text-secondary font-mono">
-                                {siteConfig.author.tagline}
-                            </p>
-                        </div>
+            <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10 flex-1 flex items-center pb-14">
+                <div className="max-w-2xl lg:max-w-[56%] will-change-transform" data-hero-parallax>
+                    <p className="animate-fade-up flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-text-secondary">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/30 px-3 py-1 text-accent">
+                            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-dot" />
+                            Open to full-time roles
+                        </span>
+                    </p>
 
-                        {/* Core Statement */}
-                        <div className="max-w-2xl">
-                            <p className="text-base sm:text-lg md:text-xl text-text-primary leading-relaxed opacity-90">
-                                {siteConfig.description}
-                            </p>
-                        </div>
+                    <h1
+                        className="mt-8 text-[3.6rem] leading-[0.92] sm:text-8xl lg:text-[6rem] xl:text-[7.4rem] animate-fade-up"
+                        style={{ animationDelay: "80ms" }}
+                    >
+                        <span className="block text-white">Yaksh</span>
+                        <span className="block text-gradient">Bhesaniya</span>
+                    </h1>
 
-                        {/* Credential strip */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
-                            {siteConfig.credentials.map((credential) => (
-                                <div
-                                    key={credential.label}
-                                    className="bg-surface/60 border border-border rounded-lg px-3 py-2.5 backdrop-blur-sm"
-                                >
-                                    <p className="font-mono text-success text-sm sm:text-base font-semibold leading-tight">
-                                        {credential.value}
-                                    </p>
-                                    <p className="text-text-secondary text-xs mt-1 leading-snug">
-                                        {credential.label}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
+                    <p
+                        className="mt-8 font-display text-2xl sm:text-3xl md:text-4xl font-medium text-white leading-tight animate-fade-up"
+                        style={{ animationDelay: "160ms" }}
+                    >
+                        I build <RoleRotator words={roles} />
+                        <br />
+                        <span className="text-text-secondary">that hold up in production.</span>
+                    </p>
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                            <Button
-                                size="lg"
-                                className="w-full sm:w-auto"
-                                onClick={() => scrollToSection("projects")}
-                            >
-                                View Work
-                            </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="w-full sm:w-auto"
-                                onClick={() => scrollToSection("blog")}
-                            >
-                                Read Engineering Blogs
-                            </Button>
-                            <Button
-                                size="lg"
-                                variant="ghost"
-                                className="w-full sm:w-auto"
-                                onClick={() => scrollToSection("contact")}
-                            >
-                                Connect →
-                            </Button>
-                        </div>
-                    </div>
+                    <p
+                        className="mt-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-xl animate-fade-up"
+                        style={{ animationDelay: "240ms" }}
+                    >
+                        I design agents that cite their sources, stay inside a cost budget and pass an evaluation gate
+                        before they ship - along with the multi-tenant backends they run on.
+                    </p>
 
-                    {/* Image Column */}
-                    <div className="flex-shrink-0 relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-success/50 to-accent/50 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                        <div className="relative w-64 h-80 md:w-80 md:h-[26rem] lg:w-96 lg:h-[34rem] rounded-2xl overflow-hidden border border-white/10 glassmorphism shadow-2xl skew-y-0 group-hover:-skew-y-2 transition-transform duration-500">
-                            <Image
-                                src="/Yaksh.jpeg"
-                                alt={siteConfig.author.name}
-                                fill
-                                className="object-cover transition-all duration-700 scale-100 hover:scale-110"
-                                priority
-                            />
-                        </div>
-                        {/* Decorative elements */}
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-success/10 rounded-full blur-2xl"></div>
-                        <div className="absolute -top-4 -left-4 w-24 h-24 bg-accent/10 rounded-full blur-2xl"></div>
+                    <div className="mt-10 flex flex-col sm:flex-row gap-3 animate-fade-up" style={{ animationDelay: "320ms" }}>
+                        <a href="#projects" className={buttonClasses("primary", "lg")}>
+                            See my work
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </a>
+                        <a
+                            href={siteConfig.resumes[0].href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={buttonClasses("outline", "lg")}
+                        >
+                            <Download className="w-4 h-4" />
+                            Resume
+                        </a>
                     </div>
                 </div>
             </div>
+
+            {/* Credential rail - in normal flow so it never collides with the content on short screens */}
+            <div className="relative z-10 hidden md:block">
+                <div className="container mx-auto px-6 max-w-6xl">
+                    <dl className="grid grid-cols-4 border-t border-white/[0.08]">
+                        {siteConfig.credentials.map((credential, idx) => (
+                            <div
+                                key={credential.label}
+                                className="py-5 pr-4 flex flex-col-reverse animate-fade-up"
+                                style={{ animationDelay: `${400 + idx * 60}ms` }}
+                            >
+                                <dt className="text-xs text-text-secondary mt-1">{credential.label}</dt>
+                                <dd className="font-sans text-lg font-bold text-white">{credential.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+
+            <a
+                href="#about"
+                className="absolute right-6 bottom-28 z-10 hidden xl:grid place-items-center w-12 h-12 rounded-full border border-white/15 text-white hover:bg-accent hover:text-black hover:border-accent transition-colors"
+                aria-label="Scroll to About"
+            >
+                <ArrowDown className="w-5 h-5 animate-float" />
+            </a>
         </section>
     );
 }

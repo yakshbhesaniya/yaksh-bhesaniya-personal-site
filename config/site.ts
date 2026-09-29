@@ -14,10 +14,10 @@ export const siteConfig = {
 
     /** Credential strip shown above the fold - the proof, not the promise. */
     credentials: [
-        { value: "IIT Bombay", label: "M.Tech - 9.18 CGPA" },
-        { value: "ISRO", label: "Space Applications Centre" },
-        { value: "98.94 %ile", label: "GATE CS 2025" },
-        { value: "Gold Medalist", label: "Diploma in IT, GTU - 10.00" },
+        { value: "Dhi Labs AI", label: "AI Engineer (Freelance)" },
+        { value: "IIT Bombay", label: "M.Tech" },
+        { value: "ISRO SAC", label: "Project Intern" },
+        { value: "RapidOps Inc.", label: "Software Engineer Intern" },
     ],
 
     social: {

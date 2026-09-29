@@ -47,7 +47,7 @@ export const projectsData: Project[] = [
             "An offline LLM-as-judge harness scored against 10 expert-authored ground-truth workbooks, gating every prompt or model change",
             "Multi-tenant backend with a SELECT ... FOR UPDATE SKIP LOCKED worker pool, advisory-lock watchdog, 24h idempotency keys and a mid-run budget guard",
         ],
-        outcome: "Live paid client work exposed over the Model Context Protocol (38 tools, 6 resources, 4 prompts), backed by 528 tests that run against real PostgreSQL and Redis rather than mocks.",
+        outcome: "Live paid client work exposed over the Model Context Protocol (38 tools, 6 resources, 4 prompts), backed by integration tests that run against real PostgreSQL and Redis rather than mocks.",
         codeAccessNote: "Proprietary client work",
         featured: true,
     },

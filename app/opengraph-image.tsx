@@ -20,7 +20,7 @@ export default async function Image() {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    backgroundColor: "#0d1117",
+                    backgroundColor: "#05070d", backgroundImage: "radial-gradient(circle at 85% 10%, rgba(139,155,255,0.35), transparent 50%), radial-gradient(circle at 0% 100%, rgba(63,220,255,0.18), transparent 45%)",
                     padding: "80px",
                 }}
             >
@@ -44,7 +44,7 @@ export default async function Image() {
                         style={{
                             fontSize: 72,
                             fontWeight: 700,
-                            color: "#c9d1d9",
+                            color: "#ffffff",
                             marginBottom: 20,
                         }}
                     >
@@ -53,7 +53,7 @@ export default async function Image() {
                     <div
                         style={{
                             fontSize: 36,
-                            color: "#58a6ff",
+                            color: "#8b9bff",
                             fontFamily: "monospace",
                             marginBottom: 40,
                         }}
@@ -63,7 +63,7 @@ export default async function Image() {
                     <div
                         style={{
                             fontSize: 24,
-                            color: "#8b949e",
+                            color: "#98a2b8",
                             maxWidth: 900,
                             lineHeight: 1.4,
                         }}
@@ -75,7 +75,7 @@ export default async function Image() {
                     <div
                         style={{
                             fontSize: 20,
-                            color: "#3fb950",
+                            color: "#46e3ac",
                             fontFamily: "monospace",
                             marginTop: 60,
                         }}

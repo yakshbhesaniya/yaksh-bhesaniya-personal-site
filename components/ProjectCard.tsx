@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/Badge";
 import { Project } from "@/data/projects";
-import Link from "next/link";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { ArrowUpRight, ChevronDown, Lock } from "lucide-react";
 
 interface ProjectCardProps {
     project: Project;
@@ -8,94 +8,76 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <div className="bg-surface border border-border rounded-lg p-5 sm:p-6 hover:border-accent/50 transition-all duration-300 h-full flex flex-col">
-            <div className="flex-1">
-                {/* Title and Period */}
-                <div className="mb-4">
-                    <p className="text-xs font-mono uppercase tracking-wider text-success mb-2">{project.category}</p>
-                    <h3 className="text-lg sm:text-xl font-semibold text-text-primary mb-2">
-                        {project.title}
-                    </h3>
-                    <p className="text-sm text-text-secondary font-mono">{project.period}</p>
-                </div>
-
-                {/* Problem Statement */}
-                <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-accent mb-2">Problem</h4>
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                        {project.problem}
-                    </p>
-                </div>
-
-                {/* Solution */}
-                <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-accent mb-2">Solution</h4>
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                        {project.solution}
-                    </p>
-                </div>
-
-                {/* Challenges */}
-                {project.challenges && project.challenges.length > 0 && (
-                    <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-accent mb-2">Key Challenges</h4>
-                        <ul className="space-y-1">
-                            {project.challenges.map((challenge, idx) => (
-                                <li key={idx} className="text-text-secondary flex items-start text-sm">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-success mt-2 mr-2.5 flex-shrink-0"></span>
-                                    <span>{challenge}</span>
-                                </li>
-                            ))}
-                        </ul>
+        <TiltCard max={5} className="h-full rounded-3xl">
+            <article className="glass glass-hover rounded-3xl p-6 sm:p-7 h-full flex flex-col">
+                <header>
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                        <span className="min-w-0 text-[11px] font-mono uppercase tracking-[0.14em] text-accent2 truncate">
+                            {project.category}
+                        </span>
+                        <span className="text-[11px] font-mono text-text-secondary whitespace-nowrap">{project.period}</span>
                     </div>
+                    <h3 className="text-xl font-semibold text-white leading-snug text-balance">{project.title}</h3>
+                </header>
+
+                <p className="mt-3 text-sm text-text-secondary leading-relaxed">{project.problem}</p>
+
+                <div className="mt-4 rounded-2xl border border-success/15 bg-success/[0.04] p-4">
+                    <p className="text-[11px] font-mono uppercase tracking-[0.14em] text-success mb-1.5">Outcome</p>
+                    <p className="text-sm text-white/85 leading-relaxed">{project.outcome}</p>
+                </div>
+
+                <details className="group mt-4">
+                    <summary className="cursor-pointer inline-flex items-center gap-1.5 text-sm text-accent hover:text-white transition-colors">
+                        <span className="group-open:hidden">How it works</span>
+                        <span className="hidden group-open:inline">Hide details</span>
+                        <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
+                    </summary>
+                    <div className="mt-3 space-y-3">
+                        <p className="text-sm text-text-secondary leading-relaxed">{project.solution}</p>
+                        {project.challenges && (
+                            <ul className="space-y-2">
+                                {project.challenges.map((challenge) => (
+                                    <li key={challenge} className="flex gap-2.5 text-sm text-text-secondary leading-relaxed">
+                                        <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent2" aria-hidden="true" />
+                                        <span>{challenge}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                </details>
+
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                    {project.techStack.map((tech) => (
+                        <span key={tech} className="chip">{tech}</span>
+                    ))}
+                </div>
+
+                {(project.githubUrl || project.codeAccessNote) && (
+                    <footer className="mt-auto pt-5">
+                        <div className="pt-4 border-t border-white/10">
+                            {project.githubUrl ? (
+                                <a
+                                    href={project.githubUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-accent2 transition-colors"
+                                    aria-label={`View ${project.title} source code on GitHub`}
+                                >
+                                    View source on GitHub
+                                    <ArrowUpRight className="w-4 h-4" />
+                                </a>
+                            ) : (
+                                <p className="inline-flex items-center gap-1.5 text-sm text-text-secondary">
+                                    <Lock className="w-3.5 h-3.5" />
+                                    {project.codeAccessNote}
+                                </p>
+                            )}
+                        </div>
+                    </footer>
                 )}
-
-                {/* Outcome */}
-                <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-success mb-2">Engineering Outcome</h4>
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                        {project.outcome}
-                    </p>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-text-primary mb-2">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-2">
-                        {project.techStack.map((tech) => (
-                            <Badge key={tech} variant="default">
-                                {tech}
-                            </Badge>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Repo link, or why there isn't one */}
-            {(project.githubUrl || project.codeAccessNote) && (
-                <div className="mt-auto pt-4 border-t border-border">
-                    {project.githubUrl ? (
-                        <Link
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-accent hover:underline text-sm font-medium"
-                        >
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                            </svg>
-                            View on GitHub
-                        </Link>
-                    ) : (
-                        <p className="inline-flex items-center gap-2 text-text-secondary text-sm">
-                            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            {project.codeAccessNote}
-                        </p>
-                    )}
-                </div>
-            )}
-        </div>
+            </article>
+        </TiltCard>
     );
 }
