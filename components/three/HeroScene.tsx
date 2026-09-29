@@ -1,6 +1,6 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
@@ -50,7 +50,7 @@ function randomSurfacePoint(rand: () => number, radius: number) {
     return new THREE.Vector3(Math.cos(theta) * r, u, Math.sin(theta) * r).multiplyScalar(radius);
 }
 
-function Globe() {
+function Globe({ glow }: { glow: React.RefObject<number> }) {
     const { positions, colors } = useMemo(() => fibonacciSphere(4200, GLOBE_RADIUS), []);
 
     return (
@@ -67,17 +67,17 @@ function Globe() {
                 </bufferGeometry>
                 <pointsMaterial size={0.024} vertexColors transparent opacity={0.95} sizeAttenuation depthWrite={false} />
             </points>
-            <Atmosphere />
+            <Atmosphere glow={glow} />
         </group>
     );
 }
 
-/** Fresnel rim glow rendered on the back faces of a slightly larger sphere. */
-function Atmosphere() {
+/** Fresnel rim glow rendered on the back faces of a slightly larger sphere. `glow` scales its strength. */
+function Atmosphere({ glow }: { glow: React.RefObject<number> }) {
     const material = useMemo(
         () =>
             new THREE.ShaderMaterial({
-                uniforms: { glowColor: { value: new THREE.Color("#7c6cff") } },
+                uniforms: { glowColor: { value: new THREE.Color("#7c6cff") }, strength: { value: 0.55 } },
                 vertexShader: /* glsl */ `
                     varying vec3 vNormal;
                     void main() {
@@ -87,10 +87,11 @@ function Atmosphere() {
                 `,
                 fragmentShader: /* glsl */ `
                     uniform vec3 glowColor;
+                    uniform float strength;
                     varying vec3 vNormal;
                     void main() {
                         float intensity = pow(0.62 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 4.0);
-                        gl_FragColor = vec4(glowColor, 1.0) * intensity * 0.55;
+                        gl_FragColor = vec4(glowColor, 1.0) * intensity * strength;
                     }
                 `,
                 side: THREE.BackSide,
@@ -100,6 +101,10 @@ function Atmosphere() {
             }),
         []
     );
+
+    useFrame(() => {
+        material.uniforms.strength.value = glow.current ?? 0.55;
+    });
 
     return (
         <mesh material={material} scale={1.16}>
@@ -222,17 +227,118 @@ function Stars() {
     );
 }
 
-function Scene({ reducedMotion }: { reducedMotion: boolean }) {
+// Widest extent of the outer orbit, in world units; the scene shrinks to keep it inside the canvas.
+const SCENE_EXTENT = 7;
+
+function Scene({ reducedMotion, fitToWidth }: { reducedMotion: boolean; fitToWidth: boolean }) {
     const world = useRef<THREE.Group>(null);
     const spin = useRef<THREE.Group>(null);
+    // Desktop keeps the whole scene inside its column; the mobile backdrop stays full size and crops.
+    const fit = useThree(({ viewport }) => (fitToWidth ? Math.min(1, viewport.width / SCENE_EXTENT) : 1));
+    const gl = useThree((state) => state.gl);
 
-    useFrame(({ pointer }, delta) => {
-        if (spin.current && !reducedMotion) spin.current.rotation.y += delta * 0.08;
-        if (world.current) {
-            // Ease toward the pointer for a subtle parallax tilt.
-            world.current.rotation.x = THREE.MathUtils.lerp(world.current.rotation.x, 0.25 - pointer.y * 0.15, 0.05);
-            world.current.rotation.z = THREE.MathUtils.lerp(world.current.rotation.z, pointer.x * 0.08, 0.05);
+    const lift = useRef<THREE.Group>(null);
+    const glow = useRef(0.55);
+
+    // Drag interaction. Pointer events only move *targets*; the frame loop eases the globe toward
+    // them with frame-rate-independent damping, which is what gives the rotation its weight.
+    const drag = useRef({
+        active: false,
+        hover: false,
+        x: 0,
+        y: 0,
+        t: 0,
+        targetSpin: 0,
+        velocity: 0, // radians per second, smoothed from recent pointer movement
+        tilt: 0,
+        idle: 1, // 0..1 blend of the ambient spin; fades out on hover/drag
+    });
+
+    useEffect(() => {
+        const el = gl.domElement;
+        const d = drag.current;
+        el.style.cursor = "grab";
+        el.style.touchAction = "pan-y";
+
+        const down = (e: PointerEvent) => {
+            d.active = true;
+            d.x = e.clientX;
+            d.y = e.clientY;
+            d.t = e.timeStamp;
+            d.velocity = 0;
+            el.setPointerCapture(e.pointerId);
+            el.style.cursor = "grabbing";
+        };
+        const move = (e: PointerEvent) => {
+            if (!d.active) return;
+            const dx = e.clientX - d.x;
+            const dy = e.clientY - d.y;
+            const dt = Math.max(e.timeStamp - d.t, 1) / 1000;
+            d.x = e.clientX;
+            d.y = e.clientY;
+            d.t = e.timeStamp;
+            const step = dx * 0.0055;
+            d.targetSpin += step;
+            // Exponential moving average of drag speed, so a fling reflects the gesture, not one jittery event.
+            d.velocity = THREE.MathUtils.lerp(d.velocity, THREE.MathUtils.clamp(step / dt, -9, 9), 0.35);
+            d.tilt = THREE.MathUtils.clamp(d.tilt + dy * 0.0035, -0.55, 0.55);
+        };
+        const up = (e: PointerEvent) => {
+            d.active = false;
+            // A pause before letting go means no fling.
+            if (e.timeStamp - d.t > 80) d.velocity = 0;
+            if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+            el.style.cursor = "grab";
+        };
+        const enter = () => (d.hover = true);
+        const leave = () => (d.hover = false);
+
+        el.addEventListener("pointerdown", down);
+        el.addEventListener("pointermove", move);
+        el.addEventListener("pointerup", up);
+        el.addEventListener("pointercancel", up);
+        el.addEventListener("pointerenter", enter);
+        el.addEventListener("pointerleave", leave);
+        return () => {
+            el.removeEventListener("pointerdown", down);
+            el.removeEventListener("pointermove", move);
+            el.removeEventListener("pointerup", up);
+            el.removeEventListener("pointercancel", up);
+            el.removeEventListener("pointerenter", enter);
+            el.removeEventListener("pointerleave", leave);
+        };
+    }, [gl]);
+
+    useFrame(({ pointer }, rawDelta) => {
+        const d = drag.current;
+        const delta = Math.min(rawDelta, 0.05); // avoid a jump after a tab switch
+        const damp = THREE.MathUtils.damp;
+
+        if (!d.active) {
+            // Coast on the fling with exponential friction...
+            d.targetSpin += d.velocity * delta;
+            d.velocity *= Math.exp(-2.4 * delta);
+            // ...then blend back into the slow ambient spin (paused while hovered).
+            d.idle = damp(d.idle, d.hover || reducedMotion ? 0 : 1, 1.5, delta);
+            d.targetSpin += 0.08 * d.idle * delta;
+            // Tilt springs back to level.
+            d.tilt = damp(d.tilt, 0, 1.8, delta);
+        } else {
+            d.idle = damp(d.idle, 0, 6, delta);
         }
+
+        if (spin.current) spin.current.rotation.y = damp(spin.current.rotation.y, d.targetSpin, 7, delta);
+        if (world.current) {
+            // Subtle pointer parallax plus the drag tilt.
+            world.current.rotation.x = damp(world.current.rotation.x, 0.25 - pointer.y * 0.12 + d.tilt, 5, delta);
+            world.current.rotation.z = damp(world.current.rotation.z, pointer.x * 0.06, 3, delta);
+        }
+        // Lift and brighten slightly when hovered, a bit more while held.
+        if (lift.current) {
+            const target = d.active ? 1.04 : d.hover ? 1.02 : 1;
+            lift.current.scale.setScalar(damp(lift.current.scale.x, target, 6, delta));
+        }
+        glow.current = damp(glow.current, d.active ? 0.95 : d.hover ? 0.72 : 0.55, 5, delta);
     });
 
     return (
@@ -240,13 +346,17 @@ function Scene({ reducedMotion }: { reducedMotion: boolean }) {
             <ambientLight intensity={0.6} />
             <directionalLight position={[5, 3, 5]} intensity={1.4} />
             <Stars />
-            <group ref={world} rotation={[0.25, 0, 0]}>
-                <group ref={spin}>
-                    <Globe />
-                    <NetworkArcs />
+            <group scale={fit}>
+                <group ref={lift}>
+                    <group ref={world} rotation={[0.25, 0, 0]}>
+                        <group ref={spin}>
+                            <Globe glow={glow} />
+                            <NetworkArcs />
+                        </group>
+                        <Satellite radius={2.75} tilt={[0.35, 0, 0.2]} speed={0.35} phase={0} />
+                        <Satellite radius={3.15} tilt={[-0.5, 0, -0.35]} speed={0.24} phase={2.2} />
+                    </group>
                 </group>
-                <Satellite radius={2.75} tilt={[0.35, 0, 0.2]} speed={0.35} phase={0} />
-                <Satellite radius={3.15} tilt={[-0.5, 0, -0.35]} speed={0.24} phase={2.2} />
             </group>
         </>
     );
@@ -256,15 +366,24 @@ export default function HeroScene() {
     const container = useRef<HTMLDivElement>(null);
     const [visible, setVisible] = useState(true);
     const [reducedMotion, setReducedMotion] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
-        setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
         const el = container.current;
         if (!el) return;
+        setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+        // Matches Tailwind's lg breakpoint, where the globe moves beside the text.
+        const desktop = window.matchMedia("(min-width: 1024px)");
+        setIsDesktop(desktop.matches);
+        const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+        desktop.addEventListener("change", onChange);
         // Stop rendering entirely while the hero is scrolled out of view.
         const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0 });
         observer.observe(el);
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            desktop.removeEventListener("change", onChange);
+        };
     }, []);
 
     return (
@@ -275,7 +394,7 @@ export default function HeroScene() {
                 camera={{ position: [0, 0, 9], fov: 45 }}
                 gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
             >
-                <Scene reducedMotion={reducedMotion} />
+                <Scene reducedMotion={reducedMotion} fitToWidth={isDesktop} />
             </Canvas>
         </div>
     );

@@ -11,16 +11,17 @@ export function Hero() {
         <section className="relative min-h-[100svh] flex flex-col overflow-hidden pt-28">
             <div className="absolute inset-0 grid-background" aria-hidden="true" />
 
-            {/* 3D globe: beside the text on desktop, a dimmed backdrop on mobile.
-                Capped width keeps it next to the text on very wide screens. */}
-            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-[92rem]" aria-hidden="true">
-                <div className="absolute inset-0 lg:left-[47%] 2xl:-right-[12rem] opacity-35 lg:opacity-100 pointer-events-none lg:pointer-events-auto">
+            {/* 3D globe, framed by the same 72rem box as the content.
+                Phone/tablet: a large dimmed backdrop behind the whole hero.
+                Desktop: beside the text, bleeding slightly past the content edge. */}
+            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-6xl pointer-events-none" aria-hidden="true">
+                <div className="absolute inset-0 opacity-35 lg:opacity-100 lg:left-[56%] xl:left-[51%] lg:-right-14 lg:pointer-events-auto">
                     <HeroSceneLoader />
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10 flex-1 flex items-center pb-14">
-                <div className="max-w-2xl lg:max-w-[56%] will-change-transform" data-hero-parallax>
+            <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10 flex-1 flex items-center pb-14 pointer-events-none">
+                <div className="max-w-2xl lg:max-w-[54%] xl:max-w-[58%] will-change-transform pointer-events-auto" data-hero-parallax>
                     <p className="animate-fade-up flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-text-secondary">
                         <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/30 px-3 py-1 text-accent">
                             <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-dot" />
@@ -29,11 +30,11 @@ export function Hero() {
                     </p>
 
                     <h1
-                        className="mt-8 text-[3.6rem] leading-[0.92] sm:text-8xl lg:text-[6rem] xl:text-[7.4rem] animate-fade-up"
+                        className="mt-8 text-[3.6rem] leading-[0.92] sm:text-8xl lg:text-[5.4rem] xl:text-[6.6rem] animate-fade-up"
                         style={{ animationDelay: "80ms" }}
                     >
                         <span className="block text-white">Yaksh</span>
-                        <span className="block text-gradient">Bhesaniya</span>
+                        <span className="inline-block whitespace-nowrap text-gradient">Bhesaniya</span>
                     </h1>
 
                     <p
