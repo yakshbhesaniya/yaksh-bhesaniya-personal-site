@@ -12,11 +12,12 @@ export function About() {
                 <div className="max-w-6xl">
                     <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">The Path</h3>
                     <p className="text-text-secondary leading-relaxed text-lg">
-                        My journey began with a Diploma in IT, leading to a BE in IT where I developed a strong foundation in computer science.
-                        After securing a good rank in GATE (CS), I am currently pursuing postgraduate studies at IIT Bombay.
-                        Along the way I have interned at Space Applications Centre (ISRO), working on satellite image processing,
-                        and I currently work as a freelance AI Engineer at Dhi Labs AI building a production LLM agent platform -
-                        while my M.Tech thesis takes on surface water monitoring from satellite data.
+                        My journey began with a Diploma in IT (GTU Gold Medalist, 10.00 CGPA), followed by a B.E. in IT and
+                        internships at HumBee Studio and RapidOps building production backends. After a year of freelance backend
+                        work and a 98.94 percentile in GATE (CS), I joined IIT Bombay for my M.Tech (9.18 CGPA). I interned at the
+                        Space Applications Centre (ISRO) on satellite image mosaicking, and I currently work as a freelance AI
+                        Engineer at Dhi Labs AI building production LLM agents - while my M.Tech thesis, SETU, builds an agentic
+                        pipeline that extracts provenance-tracked data from scientific papers.
                     </p>
                 </div>
 
@@ -48,9 +49,9 @@ export function About() {
                             <h3 className="text-lg sm:text-xl font-semibold mb-3 text-accent">Measurement Over Assumption</h3>
                             <p className="text-text-secondary leading-relaxed">
                                 I own the whole lifecycle, from API design through deployment and monitoring, and I verify
-                                rather than assume. On my thesis that means mutation-testing the test suite itself and
-                                publishing the predictions of mine that turned out to be wrong; on client work it means an
-                                evaluation harness that has to pass before a change ships.
+                                rather than assume. On my thesis that means every extracted value must pass schema, unit and
+                                verbatim-grounding gates before it is accepted; on client work it means an LLM-as-judge
+                                evaluation harness that has to pass before any prompt or model change ships.
                             </p>
                         </div>
 

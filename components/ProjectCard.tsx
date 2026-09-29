@@ -12,6 +12,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <div className="flex-1">
                 {/* Title and Period */}
                 <div className="mb-4">
+                    <p className="text-xs font-mono uppercase tracking-wider text-success mb-2">{project.category}</p>
                     <h3 className="text-lg sm:text-xl font-semibold text-text-primary mb-2">
                         {project.title}
                     </h3>

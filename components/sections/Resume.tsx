@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/Button";
 import { experienceData } from "@/data/experience";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 
 export function Resume() {
     const achievements = experienceData.filter((exp) => exp.type === "achievement");
     const work = experienceData.filter((exp) => exp.type === "work");
     const education = experienceData.filter((exp) => exp.type === "education");
+    const leadership = experienceData.filter((exp) => exp.type === "leadership");
 
     return (
         <Section
@@ -29,6 +31,7 @@ export function Resume() {
                                 <div>
                                     <h4 className="text-lg font-semibold text-text-primary">{exp.role}</h4>
                                     <p className="text-text-secondary font-medium">{exp.company}</p>
+                                    {exp.context && <p className="text-text-secondary text-sm">{exp.context}</p>}
                                 </div>
                                 <span className="text-sm text-text-secondary font-mono bg-surface px-3 py-1 rounded-full border border-border w-fit">{exp.period}</span>
                             </div>
@@ -52,6 +55,23 @@ export function Resume() {
                                     ))}
                                 </div>
                             )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Positions of Responsibility */}
+            <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-accent mb-6">Positions of Responsibility</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                    {leadership.map((pos) => (
+                        <div key={pos.role} className="bg-surface border border-border rounded-lg p-5">
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                                <h4 className="font-semibold text-text-primary">{pos.role}</h4>
+                                <span className="text-xs text-text-secondary font-mono whitespace-nowrap">{pos.period}</span>
+                            </div>
+                            <p className="text-accent text-sm mb-2">{pos.company}</p>
+                            <p className="text-text-secondary text-sm">{pos.description[0]}</p>
                         </div>
                     ))}
                 </div>
@@ -112,15 +132,14 @@ export function Resume() {
             </div>
 
             {/* Download Resume */}
-            <div className="flex justify-center mt-12 px-4 sm:px-0">
-                <Link href="/resume/Yaksh_Bhesaniya_Resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                    <Button size="lg" className="w-full sm:w-auto">
-                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Download Resume (PDF)
-                    </Button>
-                </Link>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4 sm:px-0">
+                {siteConfig.resumes.map((resume, idx) => (
+                    <Link key={resume.href} href={resume.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                        <Button size="lg" variant={idx === 0 ? "primary" : "outline"} className="w-full sm:w-auto">
+                            {resume.label} (PDF)
+                        </Button>
+                    </Link>
+                ))}
             </div>
         </Section>
     );

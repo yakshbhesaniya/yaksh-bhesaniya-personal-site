@@ -1,22 +1,23 @@
 export const siteConfig = {
     name: "Yaksh Bhesaniya",
-    title: "Backend Engineer | Agentic AI | Distributed Systems",
-    description: "I build production LLM agent systems and the backends they run on - currently shipping one for a paying client, alongside satellite data pipelines at IIT Bombay.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://yakshbhesaniya.com",
+    title: "AI Engineer | Agentic AI, LLM Systems & Backend",
+    description: "I build production LLM agent systems and the backends they run on - currently for a paying client at Dhi Labs AI - while my M.Tech thesis at IIT Bombay builds an agentic pipeline that extracts provenance-tracked data from scientific papers.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://yakshbhesaniya.vercel.app",
 
     author: {
         name: "Yaksh Bhesaniya",
         email: "yakshb.iitb@gmail.com",
-        role: "Backend Engineer",
-        tagline: "Backend | Agentic AI | Distributed Systems",
-        bio: "GTU Gold Medalist specializing in scalable backend systems, autonomous AI agents, and production-grade engineering.",
+        role: "AI Engineer",
+        tagline: "Agentic AI | LLM Systems | Backend",
+        bio: "M.Tech student at IIT Bombay and freelance AI Engineer building production LLM agents, evaluation harnesses and the multi-tenant backends they run on. Former ISRO SAC intern and GTU Gold Medalist.",
     },
 
     /** Credential strip shown above the fold - the proof, not the promise. */
     credentials: [
-        { value: "M.Tech", label: "IIT Bombay" },
+        { value: "IIT Bombay", label: "M.Tech - 9.18 CGPA" },
         { value: "ISRO", label: "Space Applications Centre" },
-        { value: "Gold Medalist", label: "Diploma in IT, GTU - 10.00 CGPA" },
+        { value: "98.94 %ile", label: "GATE CS 2025" },
+        { value: "Gold Medalist", label: "Diploma in IT, GTU - 10.00" },
     ],
 
     social: {
@@ -26,25 +27,34 @@ export const siteConfig = {
         email: "yakshb.iitb@gmail.com",
     },
 
+    resumes: [
+        { label: "Resume - AI / Agentic", href: "/resume/Yaksh_Bhesaniya_Resume.pdf" },
+        { label: "Resume - Backend / Systems", href: "/resume/Yaksh_Bhesaniya_Resume_Backend_Systems.pdf" },
+    ],
+
     keywords: [
-        "Agentic AI Engineer",
-        "AI Agent Developer",
-        "Multi-Agent AI Systems",
-        "Backend Developer India",
-        "Node.js Backend Engineer",
-        "Scalable Systems Developer",
         "Yaksh Bhesaniya",
-        "Microservices Node.js Expert",
-        "GTU Gold Medalist Developer",
-        "TypeScript Backend Developer",
-        "Distributed Systems Engineer",
-        "LLM Agent Engineer",
-        "FastAPI Python Developer",
+        "AI Engineer",
+        "Agentic AI Engineer",
+        "LLM Engineer",
+        "LLM Agent Developer",
+        "Multi-Agent AI Systems",
+        "ReAct Agents",
+        "Model Context Protocol",
         "MCP Server Developer",
-        "Remote Sensing Engineer",
-        "Satellite Image Processing",
+        "RAG Engineer",
+        "LLM Evaluation",
+        "Backend Engineer India",
+        "FastAPI Python Developer",
+        "Node.js Backend Engineer",
+        "PostgreSQL Redis Backend",
+        "Distributed Systems Engineer",
         "IIT Bombay M.Tech",
+        "IIT Bombay AI Engineer",
         "ISRO SAC Intern",
+        "Satellite Image Processing",
+        "Remote Sensing Engineer",
+        "GTU Gold Medalist",
     ],
 
     // Featured Medium blog playlists

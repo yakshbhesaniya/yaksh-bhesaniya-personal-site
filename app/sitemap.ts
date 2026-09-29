@@ -1,50 +1,18 @@
 import { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
 
+// Single-page site: fragment URLs (/#about) are not separate documents to crawlers,
+// so the sitemap lists the page itself plus the downloadable resumes.
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yakshbhesaniya.com";
+    const lastModified = new Date();
 
     return [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 1,
-        },
-        {
-            url: `${baseUrl}/#about`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/#expertise`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/#projects`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}/#blog`,
-            lastModified: new Date(),
-            changeFrequency: "weekly",
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}/#github`,
-            lastModified: new Date(),
-            changeFrequency: "weekly",
-            priority: 0.7,
-        },
-        {
-            url: `${baseUrl}/#contact`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
+        { url: siteConfig.url, lastModified, changeFrequency: "monthly", priority: 1 },
+        ...siteConfig.resumes.map((resume) => ({
+            url: `${siteConfig.url}${resume.href}`,
+            lastModified,
+            changeFrequency: "monthly" as const,
             priority: 0.6,
-        },
+        })),
     ];
 }

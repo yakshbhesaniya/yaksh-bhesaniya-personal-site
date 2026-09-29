@@ -80,7 +80,7 @@ export default async function Image() {
                             marginTop: 60,
                         }}
                     >
-                        $ backend-engineer --production-ready
+                        IIT Bombay · Dhi Labs AI · ISRO SAC
                     </div>
                 </div>
             </div>

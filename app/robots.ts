@@ -1,13 +1,14 @@
 import { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
 
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yakshbhesaniya.com";
+    const baseUrl = siteConfig.url;
 
     return {
         rules: {
             userAgent: "*",
             allow: "/",
-            disallow: ["/api/", "/_next/"],
+            disallow: ["/api/"],
         },
         sitemap: `${baseUrl}/sitemap.xml`,
     };
